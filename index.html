@@ -1,1 +1,337 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NDITRADE | High-End Executive Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00d2ff;
+            --secondary: #9d50bb;
+            --bg-dark: #020408;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-strong: rgba(255, 255, 255, 0.07);
+            --border: rgba(255, 255, 255, 0.1);
+            --neon-glow: 0 0 20px rgba(0, 210, 255, 0.3);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: var(--bg-dark);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding-bottom: 120px;
+        }
+
+        /* --- SUPER LUXURY BACKGROUND --- */
+        .mesh-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(at 0% 0%, rgba(0, 210, 255, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(157, 80, 187, 0.1) 0px, transparent 50%),
+                radial-gradient(at 50% 50%, rgba(10, 20, 40, 1) 0px, transparent 100%);
+            animation: bgShift 20s infinite alternate;
+        }
+
+        @keyframes bgShift {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        /* --- HEADER LUXE --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 6%;
+            background: rgba(2, 4, 8, 0.5);
+            backdrop-filter: blur(30px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0; z-index: 1000;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-diamond {
+            width: 42px; height: 42px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            transform: rotate(45deg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: var(--neon-glow);
+            border-radius: 8px;
+        }
+
+        .logo-diamond i {
+            transform: rotate(-45deg);
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .brand-name {
+            font-weight: 800;
+            font-size: 1.5rem;
+            letter-spacing: -1px;
+            background: linear-gradient(to right, #fff, #888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- TIME & DATE --- */
+        .executive-info {
+            text-align: right;
+        }
+
+        #clock {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--primary);
+            text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+        }
+
+        #date {
+            font-size: 0.75rem;
+            color: #64748b;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* --- CONTENT --- */
+        .container {
+            padding: 40px 6%;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .welcome-title {
+            margin-bottom: 50px;
+        }
+
+        .welcome-title h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -2px;
+            line-height: 1;
+        }
+
+        .welcome-title span {
+            color: var(--primary);
+            text-shadow: var(--neon-glow);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        /* --- THE SUPER CARD --- */
+        .card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 35px;
+            padding: 40px;
+            text-decoration: none;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            backdrop-filter: blur(20px);
+            animation: float 6s infinite ease-in-out;
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at var(--x) var(--y), rgba(0, 210, 255, 0.15), transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-15px) scale(1.02);
+            background: var(--glass-strong);
+            border-color: var(--primary);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5), inset 0 0 20px rgba(0, 210, 255, 0.1);
+        }
+
+        .card:hover::after { opacity: 1; }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            background: linear-gradient(45deg, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 10px rgba(0, 210, 255, 0.3));
+        }
+
+        .card h3 { font-size: 1.5rem; margin-bottom: 12px; font-weight: 700; }
+        .card p { color: #94a3b8; font-size: 0.95rem; line-height: 1.7; }
+
+        /* --- FLOATING NAV --- */
+        .nav-bar {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(10, 15, 30, 0.8);
+            backdrop-filter: blur(25px);
+            padding: 12px 30px;
+            border-radius: 100px;
+            display: flex;
+            gap: 40px;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+            z-index: 2000;
+        }
+
+        .nav-item {
+            color: #64748b;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            color: var(--primary);
+            transform: translateY(-5px);
+            text-shadow: var(--neon-glow);
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(20deg); }
+        }
+
+        @media (max-width: 768px) {
+            .welcome-title h1 { font-size: 2rem; }
+            .grid { grid-template-columns: 1fr; }
+            .nav-bar { gap: 25px; padding: 12px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="mesh-bg"></div>
+
+    <header>
+        <div class="logo-section">
+            <div class="logo-diamond">
+                <i class="fa-solid fa-n"></i>
+            </div>
+            <div class="brand-name">NDITRADE</div>
+        </div>
+        <div class="executive-info">
+            <div id="clock">00:00:00</div>
+            <div id="date">MEMUAT DATA...</div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="welcome-title">
+            <p style="color: var(--primary); letter-spacing: 5px; font-weight: 700; font-size: 0.7rem; text-transform: uppercase; margin-bottom: 15px;">Authenticated Executive Dashboard</p>
+            <h1>Halo, <span>Direktur Suhandi</span> <span style="display:inline-block; animation: wave 2s infinite;">👋</span></h1>
+        </div>
+
+        <div class="grid">
+            <a href="keuangan.html" class="card" style="animation-delay: 0.1s;">
+                <i class="fa-solid fa-wallet card-icon"></i>
+                <h3>Keuangan</h3>
+                <p>Akses laporan kas, portofolio aset, dan manajemen profitabilitas NDITRADE Ltd secara instan.</p>
+            </a>
+            <a href="analisa.html" class="card" style="animation-delay: 0.3s;">
+                <i class="fa-solid fa-chart-line card-icon"></i>
+                <h3>Analisa</h3>
+                <p>Analisis teknikal XAUUSD dengan indikator presisi tinggi untuk pengambilan keputusan trading.</p>
+            </a>
+            <a href="catatan.html" class="card" style="animation-delay: 0.5s;">
+                <i class="fa-solid fa-note-sticky card-icon"></i>
+                <h3>Catatan</h3>
+                <p>Simpan strategi bisnis, memo internal, dan dokumentasi penting pengembangan sistem.</p>
+            </a>
+            <a href="kesehatan.html" class="card" style="animation-delay: 0.7s;">
+                <i class="fa-solid fa-heart-pulse card-icon"></i>
+                <h3>Kesehatan</h3>
+                <p>Monitor status kebugaran dan keseimbangan gaya hidup untuk performa eksekutif terbaik.</p>
+            </a>
+            <a href="tentang.html" class="card" style="animation-delay: 0.9s;">
+                <i class="fa-solid fa-shield-halved card-icon"></i>
+                <h3>Tentang</h3>
+                <p>Informasi lisensi, struktur organisasi, dan kredensial sistem NDITRADE Management.</p>
+            </a>
+        </div>
+    </div>
+
+    <nav class="nav-bar">
+        <a href="#" class="nav-item active"><i class="fa-solid fa-house"></i></a>
+        <a href="keuangan.html" class="nav-item"><i class="fa-solid fa-coins"></i></a>
+        <a href="analisa.html" class="nav-item"><i class="fa-solid fa-chart-pie"></i></a>
+        <a href="catatan.html" class="nav-item"><i class="fa-solid fa-file-signature"></i></a>
+        <a href="tentang.html" class="nav-item"><i class="fa-solid fa-fingerprint"></i></a>
+    </nav>
+
+    <script>
+        // Real-time Clock & Date
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('clock').innerText = now.toLocaleTimeString('id-ID', { hour12: false });
+            
+            const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+            document.getElementById('date').innerText = now.toLocaleDateString('id-ID', options);
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        // Mouse Spotlight Effect for Luxe Cards
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--x', `${x}px`);
+                card.style.setProperty('--y', `${y}px`);
+                
+                // Tilt effect
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = (y - centerY) / 15;
+                const rotateY = (centerX - x) / 15;
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
+            });
+        });
+    </script>
+</body>
+</html>
 
